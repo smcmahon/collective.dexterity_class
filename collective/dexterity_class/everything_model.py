@@ -82,9 +82,8 @@ class EverythingModel(dexterity.Item):
 # of this type by uncommenting the grok.name line below or by
 # changing the view class name and template filename to View / view.pt.
 
-class SampleView(form.DisplayForm):
+class View(form.DisplayForm):
     grok.context(IEverythingModel)
     grok.require('zope2.View')
-    grok.name("view")
     
     # grok.name('view)
