@@ -5,6 +5,12 @@
       lang="en"
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="collective.dexterity_class">
+
+<metal:javascriptslot fill-slot="javascript_head_slot">
+    <script type="text/javascript" src="test.js" 
+            tal:attributes="src string:${view/static}/test.js"></script>
+</metal:javascriptslot>
+
 <body>
 
 <tal:comment tal:condition="nothing">
@@ -28,7 +34,7 @@
     
     <div tal:content="context/text_line">Text Line Field Here</div>
 
-    <div tal:content="view/upperLine">Upper-Case Text Line Field Here</div>
+    <div class="upperLine" tal:content="view/upperLine">Upper-Case Text Line Field Here</div>
 
     <div tal:content="context/text_field" tal:condition="context/text_field">
         Text Field Here
