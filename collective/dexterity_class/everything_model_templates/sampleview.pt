@@ -26,6 +26,16 @@
 
     <div tal:content="context/Title">Title inserted here</div>
     
+    <div tal:content="context/text_line">Text Line Field Here</div>
+
+    <div tal:content="context/text_field" tal:condition="context/text_field">
+        Text Field Here
+    </div>
+    
+    <div tal:condition="not:context/text_field">
+        Hmmm. No text field content
+    </div>
+    
   </metal:content-core>
 </metal:main>
 
