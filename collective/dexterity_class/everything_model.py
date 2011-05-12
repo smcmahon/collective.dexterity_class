@@ -35,6 +35,7 @@ class IEverythingModel(form.Schema):
         )
 
     date_time_field = schema.Date(title=u'Date-Time Field', required=False)
+    form.order_after(date_time_field='choice_field')
 
 
 @form.default_value(field=IEverythingModel['date_time_field'])
