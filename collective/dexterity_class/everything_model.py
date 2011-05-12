@@ -11,6 +11,9 @@ from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 from collective.z3cform.datetimewidget import DateFieldWidget
 
+from z3c.relationfield.schema import RelationChoice, RelationList
+from plone.formwidget.contenttree import ObjPathSourceBinder
+
 from collective.dexterity_class import MessageFactory as _
 
 
@@ -42,6 +45,21 @@ class IEverythingModel(form.Schema):
     
     form.mode(floater='hidden')
     floater = schema.Float(title=_(u"Floating Point Field"), default=0.0)
+
+    relation_field = RelationChoice(title=_(u'My Related Page'),
+      source=ObjPathSourceBinder(portal_type='Document'),
+      default=None,
+      required=False
+    )
+
+    relatedItems = RelationList(
+        title=u"Related Items",
+        default=[],
+        value_type=RelationChoice(
+              title=_(u"Related"),
+              source=ObjPathSourceBinder(portal_type=('Document', 'File'))),
+        required=False,
+    )
 
 
 @form.default_value(field=IEverythingModel['date_time_field'])
