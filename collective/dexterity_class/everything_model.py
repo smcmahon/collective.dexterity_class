@@ -3,6 +3,7 @@ import datetime
 from five import grok
 from plone.directives import dexterity, form
 
+from Acquisition import aq_inner
 from zope import schema
 
 from z3c.form import group, field
@@ -86,4 +87,11 @@ class View(form.DisplayForm):
     grok.context(IEverythingModel)
     grok.require('zope2.View')
     
-    # grok.name('view)
+
+class AsText(grok.View):
+    grok.context(IEverythingModel)
+    grok.require('zope2.View')
+
+    def render(self):
+        self.request.response.setHeader('Content-Type', 'text/plain')
+        return getattr(aq_inner(self.context), 'text_line', 'missing')
