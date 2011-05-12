@@ -1,3 +1,5 @@
+import datetime
+
 from five import grok
 from plone.directives import dexterity, form
 
@@ -30,10 +32,12 @@ class IEverythingModel(form.Schema):
         fields=['file_upload', 'image_field'],
         )
 
+    date_time_field = schema.Datetime(title=u'Date-Time Field', required=False)
+
 
 @form.default_value(field=IEverythingModel['date_time_field'])
 def default_date(data):
-    return datetime.today()
+    return datetime.datetime.today()
 
 
 # Custom content-type class; objects created for this content type will
