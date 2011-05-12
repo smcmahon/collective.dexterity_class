@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<object name="everything-type" meta_type="Dexterity FTI"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <property name="title">Everything Type</property>
+ <property name="description">None</property>
+ <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+ <property name="factory">everything-type</property>
+ <property name="link_target"></property>
+ <property name="immediate_view">view</property>
+ <property name="global_allow">True</property>
+ <property name="filter_content_types">True</property>
+ <property name="allowed_content_types"/>
+ <property name="allow_discussion">False</property>
+ <property name="default_view">view</property>
+ <property name="view_methods">
+  <element value="view"/>
+ </property>
+ <property name="default_view_fallback">False</property>
+ <property name="add_permission">cmf.AddPortalContent</property>
+ <property name="klass">plone.dexterity.content.Item</property>
+ <property name="behaviors">
+  <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
+  <element value="plone.app.content.interfaces.INameFromTitle"/>
+ </property>
+ <property name="schema"></property>
+ <property
+    name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+    &lt;schema&gt;
+      &lt;field name="text_line" type="zope.schema.TextLine"&gt;
+        &lt;description&gt;help for text line&lt;/description&gt;
+        &lt;title&gt;Text Line&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="boolean_field" type="zope.schema.Bool"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Boolean Field&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="choice_field" type="zope.schema.Choice"&gt;
+        &lt;default&gt;One&lt;/default&gt;
+        &lt;description /&gt;
+        &lt;missing_value&gt;One&lt;/missing_value&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Choice Field&lt;/title&gt;
+        &lt;values&gt;
+          &lt;element&gt;One&lt;/element&gt;
+          &lt;element&gt;Two&lt;/element&gt;
+          &lt;element&gt;Three&lt;/element&gt;
+        &lt;/values&gt;
+      &lt;/field&gt;
+      &lt;field name="date_time_field" type="zope.schema.Datetime"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Date-Time Field&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="file_upload" type="plone.namedfile.field.NamedFile"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;File Upload&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="floater" type="zope.schema.Float"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Floater&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="image_field" type="plone.namedfile.field.NamedImage"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Image Field&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="integer_field" type="zope.schema.Int"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Integer Field&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="multiple_choice_field" type="zope.schema.List"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Multiple Choice Field&lt;/title&gt;
+        &lt;value_type type="zope.schema.Choice"&gt;
+          &lt;values&gt;
+            &lt;element&gt;One&lt;/element&gt;
+            &lt;element&gt;Two&lt;/element&gt;
+            &lt;element&gt;Three&lt;/element&gt;
+          &lt;/values&gt;
+        &lt;/value_type&gt;
+      &lt;/field&gt;
+      &lt;field name="rich_text_field" type="plone.app.textfield.RichText"&gt;
+        &lt;default /&gt;
+        &lt;description /&gt;
+        &lt;missing_value /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Rich Text Field&lt;/title&gt;
+      &lt;/field&gt;
+      &lt;field name="text_field" type="zope.schema.Text"&gt;
+        &lt;description /&gt;
+        &lt;required&gt;False&lt;/required&gt;
+        &lt;title&gt;Text Field&lt;/title&gt;
+      &lt;/field&gt;
+    &lt;/schema&gt;
+  &lt;/model&gt;</property>
+ <property name="model_file"></property>
+ <alias from="(Default)" to="(dynamic view)"/>
+ <alias from="edit" to="@@edit"/>
+ <alias from="sharing" to="@@sharing"/>
+ <alias from="view" to="(selected layout)"/>
+ <action title="View" action_id="view" category="object" condition_expr=""
+    icon_expr="" link_target="" url_expr="string:${object_url}"
+    visible="True">
+  <permission value="View"/>
+ </action>
+ <action title="Edit" action_id="edit" category="object" condition_expr=""
+    icon_expr="" link_target="" url_expr="string:${object_url}/edit"
+    visible="True">
+  <permission value="Modify portal content"/>
+ </action>
+</object>
