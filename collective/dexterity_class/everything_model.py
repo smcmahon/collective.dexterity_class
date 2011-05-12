@@ -8,6 +8,8 @@ from zope import schema
 from z3c.form import group, field
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
+from collective.z3cform.datetimewidget import DateFieldWidget
+
 from collective.dexterity_class import MessageFactory as _
 
 
@@ -32,7 +34,7 @@ class IEverythingModel(form.Schema):
         fields=['file_upload', 'image_field'],
         )
 
-    date_time_field = schema.Datetime(title=u'Date-Time Field', required=False)
+    date_time_field = schema.Date(title=u'Date-Time Field', required=False)
 
 
 @form.default_value(field=IEverythingModel['date_time_field'])
