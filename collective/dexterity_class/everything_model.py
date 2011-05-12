@@ -87,6 +87,9 @@ class View(form.DisplayForm):
     grok.context(IEverythingModel)
     grok.require('zope2.View')
     
+    def upperLine(self):
+        return getattr(aq_inner(self.context), 'text_line', 'missing').upper()
+    
 
 class AsText(grok.View):
     grok.context(IEverythingModel)

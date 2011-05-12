@@ -28,6 +28,8 @@
     
     <div tal:content="context/text_line">Text Line Field Here</div>
 
+    <div tal:content="view/upperLine">Upper-Case Text Line Field Here</div>
+
     <div tal:content="context/text_field" tal:condition="context/text_field">
         Text Field Here
     </div>
