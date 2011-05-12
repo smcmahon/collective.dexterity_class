@@ -34,6 +34,8 @@ class IEverythingModel(form.Schema):
         fields=['file_upload', 'image_field'],
         )
 
+    text_line = schema.TextLine(title=_(u"Text Line"), required=False)
+
     date_time_field = schema.Date(title=u'Date-Time Field', required=False)
     form.order_after(date_time_field='choice_field')
 
@@ -41,6 +43,12 @@ class IEverythingModel(form.Schema):
 @form.default_value(field=IEverythingModel['date_time_field'])
 def default_date(data):
     return datetime.datetime.today()
+
+
+@form.validator(field=IEverythingModel['text_line'])
+def validateTitle(value):
+    if value and value == value.upper():
+        raise schema.interfaces.InvalidValue(_(u"Please don't shout"))
 
 
 # Custom content-type class; objects created for this content type will
