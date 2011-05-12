@@ -85,5 +85,6 @@ class EverythingModel(dexterity.Item):
 class SampleView(form.DisplayForm):
     grok.context(IEverythingModel)
     grok.require('zope2.View')
+    grok.name("view")
     
     # grok.name('view)
