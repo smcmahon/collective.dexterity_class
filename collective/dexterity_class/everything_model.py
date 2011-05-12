@@ -51,6 +51,13 @@ def validateTitle(value):
         raise schema.interfaces.InvalidValue(_(u"Please don't shout"))
 
 
+@form.error_message(error=schema.interfaces.InvalidValue, field=IEverythingModel['text_line'])
+def tooLoud(value):
+    # import pdb; pdb.set_trace()
+    # Attempting to read value blows up!
+    return _(u"Yuck! Too loud")
+
+
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
 # methods and properties. Put methods that are mainly useful for rendering
