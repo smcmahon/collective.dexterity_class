@@ -23,6 +23,12 @@ class IEverythingModel(form.Schema):
     # and add directives here as necessary.
     
     form.model("models/everything_model.xml")
+    
+    form.fieldset(
+        "attachments", 
+        label=_("Attachments"),
+        fields=['file_upload', 'image_field'],
+        )
 
 
 # Custom content-type class; objects created for this content type will
