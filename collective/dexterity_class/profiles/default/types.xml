@@ -3,5 +3,6 @@
  <property name="title">Controls the available content types in your portal</property>
  <object meta_type="Dexterity FTI" name="everything-type" />
   <!-- -*- extra stuff goes here -*- -->
+  <object name="collective.dexterity_class.typefromschema" meta_type="Dexterity FTI" />
   <object name="collective.dexterity_class.everythingmodel" meta_type="Dexterity FTI" />
 </object>
