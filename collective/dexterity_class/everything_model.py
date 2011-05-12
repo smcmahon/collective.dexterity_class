@@ -38,6 +38,9 @@ class IEverythingModel(form.Schema):
 
     date_time_field = schema.Date(title=u'Date-Time Field', required=False)
     form.order_after(date_time_field='choice_field')
+    
+    form.mode(floater='hidden')
+    floater = schema.Float(title=_(u"Floating Point Field"), default=0.0)
 
 
 @form.default_value(field=IEverythingModel['date_time_field'])
