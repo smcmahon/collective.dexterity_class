@@ -55,6 +55,8 @@ class IEverythingModel(form.Schema):
       required=False
     )
 
+    dexterity.read_permission(relatedItems='cmf.ReviewPortalContent')
+    dexterity.write_permission(relatedItems='cmf.ReviewPortalContent')
     relatedItems = RelationList(
         title=u"Related Items",
         default=[],
