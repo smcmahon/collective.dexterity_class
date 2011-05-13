@@ -5,6 +5,7 @@ from plone.directives import dexterity, form
 
 from Acquisition import aq_inner
 from zope import schema
+from zope.schema.vocabulary import SimpleVocabulary
 
 from z3c.form import group, field
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
@@ -18,6 +19,8 @@ from collective.dexteritytextindexer import searchable
 
 from collective.dexterity_class import MessageFactory as _
 
+fruit_list = [_(u'Apples'), _(u'Oranges'), _(u'Berries'), _(u'Bananas')]
+fruits = SimpleVocabulary.fromValues(fruit_list)
 
 # Interface class; used to define content-type schema.
 
@@ -35,7 +38,7 @@ class IEverythingModel(form.Schema):
     form.model("models/everything_model.xml")
 
     fruit_choice = schema.Choice(title=_(u"Pick your fruit"), 
-        values= ['Apples', 'Oranges', 'Berries'])
+        vocabulary=fruits)
     
     form.fieldset(
         "attachments", 
