@@ -14,6 +14,8 @@ from collective.z3cform.datetimewidget import DateFieldWidget
 from z3c.relationfield.schema import RelationChoice, RelationList
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
+from collective.dexteritytextindexer import searchable
+
 from collective.dexterity_class import MessageFactory as _
 
 
@@ -38,6 +40,7 @@ class IEverythingModel(form.Schema):
         fields=['file_upload', 'image_field'],
         )
 
+    searchable('text_line')
     text_line = schema.TextLine(title=_(u"Text Line"), required=False)
 
     date_time_field = schema.Date(title=u'Date-Time Field', required=False)

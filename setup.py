@@ -27,6 +27,7 @@ setup(name='collective.dexterity_class',
       install_requires=[
           'setuptools',
           'plone.app.dexterity',
+          'collective.dexteritytextindexer',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
