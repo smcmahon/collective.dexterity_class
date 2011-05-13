@@ -34,7 +34,6 @@
     
     <div tal:content="context/text_line">Text Line Field Here</div>
     
-    <p>Countdown: <span tal:replace="context/getRelated"></span></p>
     <p>Countdown: <span tal:replace="context/getCountDown"></span></p>
     <p>Countdown: <span tal:replace="context/count_down"></span></p>
 

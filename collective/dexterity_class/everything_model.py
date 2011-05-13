@@ -33,6 +33,9 @@ class IEverythingModel(form.Schema):
     # and add directives here as necessary.
     
     form.model("models/everything_model.xml")
+
+    fruit_choice = schema.Choice(title=_(u"Pick your fruit"), 
+        values= ['Apples', 'Oranges', 'Berries'])
     
     form.fieldset(
         "attachments", 
@@ -67,6 +70,7 @@ class IEverythingModel(form.Schema):
     )
 
 
+
 @form.default_value(field=IEverythingModel['date_time_field'])
 def default_date(data):
     return datetime.datetime.today()
@@ -94,7 +98,7 @@ class EverythingModel(dexterity.Item):
     grok.implements(IEverythingModel)
     
     def getCountDown(self):
-        return str(range(self.integer_field, 0, -1))
+        return str(range(self.integer_field or 0, 0, -1))
         
     count_down = property(getCountDown, doc="Count Down from integer_field")
 
