@@ -22,6 +22,10 @@ from collective.dexterity_class import MessageFactory as _
 fruit_list = [_(u'Apples'), _(u'Oranges'), _(u'Berries'), _(u'Bananas')]
 fruits = SimpleVocabulary.fromValues(fruit_list)
 
+@grok.provider(schema.interfaces.IContextSourceBinder)
+def vocabProvider(context):
+    return SimpleVocabulary.fromValues(fruit_list)
+
 # Interface class; used to define content-type schema.
 
 class IEverythingModel(form.Schema):
@@ -38,7 +42,7 @@ class IEverythingModel(form.Schema):
     form.model("models/everything_model.xml")
 
     fruit_choice = schema.Choice(title=_(u"Pick your fruit"), 
-        vocabulary=fruits)
+        source=vocabProvider)
     
     form.fieldset(
         "attachments", 
