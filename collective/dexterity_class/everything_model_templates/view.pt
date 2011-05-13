@@ -33,6 +33,8 @@
     <div tal:content="context/Title">Title inserted here</div>
     
     <div tal:content="context/text_line">Text Line Field Here</div>
+    
+    <p>Countdown: <span tal:replace="context/count_down"></span></p>
 
     <div class="upperLine" tal:content="view/upperLine">Upper-Case Text Line Field Here</div>
 

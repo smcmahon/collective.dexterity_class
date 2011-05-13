@@ -91,7 +91,10 @@ def tooLoud(value):
 class EverythingModel(dexterity.Item):
     grok.implements(IEverythingModel)
     
-    # Add your class methods and properties here
+    def getCountDown(self):
+        return str(range(self.integer_field, 0, -1))
+        
+    count_down = property(getCountDown, doc="Count Down from integer_field")
 
 
 # View class
