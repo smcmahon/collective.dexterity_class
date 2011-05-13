@@ -25,3 +25,55 @@ Integration Tests
     <Application at >
 
 
+    
+Create a Container for Everything
+
+    Create the object::
+    
+    >>> from zope.component import createObject
+    >>> container = createObject('collective.dexterity_class.containerforeverything')
+    
+    Verify it's type::
+    
+    >>> container.portal_type
+    'collective.dexterity_class.containerforeverything'
+    
+    Give it a title::
+    
+    >>> container.setTitle('Test Container')
+    >>> container.Title()
+    'Test Container'
+    
+    Put it in our base folder::
+    
+    >>> from plone.dexterity.utils import addContentToContainer
+    >>> cfolder = addContentToContainer(folder, container)
+
+    >>> cfolder
+    <ContainerforEverything at /plone/Members/test_user_1_/test-container>
+    
+    >>> folder['test-container'].Title()
+    'Test Container'
+
+Put an Everything object in our container::
+
+    >>> my_content = createObject('collective.dexterity_class.everythingmodel')
+    
+    >>> my_content
+    <EverythingModel at >
+    
+    >>> my_content.setTitle('Test Content')
+    >>> my_content.Title()
+    u'Test Content'
+    
+    >>> item = addContentToContainer(cfolder, my_content)
+    >>> item
+    <EverythingModel at /plone/Members/test_user_1_/test-container/test-content>
+
+Try to add something that should not fit::
+
+    >>> new_content = createObject('collective.dexterity_class.typefromschema')
+    >>> item = addContentToContainer(cfolder, new_content)
+    Traceback (most recent call last):
+    ...
+    ValueError: Disallowed subobject type: collective.dexterity_class.typefromschema

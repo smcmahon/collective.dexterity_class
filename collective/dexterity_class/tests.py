@@ -3,15 +3,17 @@ import unittest
 
 from Testing import ZopeTestCase as ztc
 
-from Products.Five import fiveconfigure
+from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import PloneSite
-ptc.setupPloneSite()
+from Products.PloneTestCase.layer import onsetup
 
 import collective.dexterity_class
 
 OPTION_FLAGS = doctest.NORMALIZE_WHITESPACE | \
                doctest.ELLIPSIS
+
+ptc.setupPloneSite(products=['collective.dexterity_class'])
 
 
 class TestCase(ptc.PloneTestCase):
@@ -20,9 +22,7 @@ class TestCase(ptc.PloneTestCase):
 
         @classmethod
         def setUp(cls):
-            fiveconfigure.debug_mode = True
-            ztc.installPackage(collective.dexterity_class)
-            fiveconfigure.debug_mode = False
+            zcml.load_config('configure.zcml', collective.dexterity_class)
 
         @classmethod
         def tearDown(cls):
