@@ -23,6 +23,10 @@ class IContainerforEverything(form.Schema):
     # and add directives here as necessary.
     
     form.model("models/container_for_everything.xml")
+    
+    available_fruits = schema.List(title=_(u"Available Fruits"),
+        default=[],
+        value_type=schema.TextLine())
 
 
 # Custom content-type class; objects created for this content type will

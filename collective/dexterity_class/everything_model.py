@@ -19,11 +19,12 @@ from collective.dexteritytextindexer import searchable
 
 from collective.dexterity_class import MessageFactory as _
 
-fruit_list = [_(u'Apples'), _(u'Oranges'), _(u'Berries'), _(u'Bananas')]
-fruits = SimpleVocabulary.fromValues(fruit_list)
 
 @grok.provider(schema.interfaces.IContextSourceBinder)
 def vocabProvider(context):
+    """ pick up fruit list from parent """
+
+    fruit_list = getattr(context.__parent__, 'available_fruits', [])
     return SimpleVocabulary.fromValues(fruit_list)
 
 # Interface class; used to define content-type schema.
