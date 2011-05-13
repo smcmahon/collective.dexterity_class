@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="portal_catalog">
+    <index name="choice_field" meta_type="FieldIndex">
+        <indexed_attr value="choice_field"/>
+    </index>
+    <column value="choice_field"/>
+</object>
