@@ -1,0 +1,27 @@
+Integration Tests
+
+    >>> portal
+    <PloneSite at /plone>
+    
+    >>> portal_name
+    'plone'
+    
+    >>> folder
+    <ATFolder at /plone/Members/test_user_1_>
+    
+    >>> user_name
+    'test_user_1_'
+    
+    >>> user_password
+    'secret'
+    
+    >>> user_role
+    'test_role_1_'
+
+    >>> app.REQUEST
+    <HTTPRequest, URL=http://nohost>
+    
+    >>> app
+    <Application at >
+
+

@@ -1,7 +1,6 @@
+import doctest
 import unittest
 
-#from zope.testing import doctestunit
-#from zope.component import testing
 from Testing import ZopeTestCase as ztc
 
 from Products.Five import fiveconfigure
@@ -10,6 +9,9 @@ from Products.PloneTestCase.layer import PloneSite
 ptc.setupPloneSite()
 
 import collective.dexterity_class
+
+OPTION_FLAGS = doctest.NORMALIZE_WHITESPACE | \
+               doctest.ELLIPSIS
 
 
 class TestCase(ptc.PloneTestCase):
@@ -41,9 +43,11 @@ def test_suite():
 
 
         # Integration tests that use PloneTestCase
-        #ztc.ZopeDocFileSuite(
-        #    'README.txt', package='collective.dexterity_class',
-        #    test_class=TestCase),
+        ztc.ZopeDocFileSuite(
+           'IntegrationTests.txt',
+           package='collective.dexterity_class',
+           optionflags=OPTION_FLAGS,
+           test_class=TestCase),
 
         #ztc.FunctionalDocFileSuite(
         #    'browser.txt', package='collective.dexterity_class',
