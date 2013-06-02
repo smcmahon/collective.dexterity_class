@@ -21,7 +21,7 @@ from collective.dexterity_class import MessageFactory as _
 
 # Interface class; used to define content-type schema.
 
-class IPresenter(model.Schema, IImageScaleTraversable):
+class IPresenter(form.Schema, IImageScaleTraversable):
     """
     Conference Presenter
     """

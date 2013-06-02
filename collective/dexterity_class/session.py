@@ -1,9 +1,12 @@
+import datetime
 from five import grok
 
 from z3c.form import group, field
 from zope import schema
+from zope.interface import provider
 from zope.interface import invariant, Invalid
 from zope.schema.interfaces import IContextSourceBinder
+from zope.schema.interfaces import IContextAwareDefaultFactory
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 from plone.dexterity.content import Container
@@ -19,19 +22,47 @@ from plone.app.textfield import RichText
 from collective.dexterity_class import MessageFactory as _
 
 
+@provider(IContextAwareDefaultFactory)
+def default_start(context):
+    return datetime.datetime.now() + datetime.timedelta(7)
+
+@provider(IContextAwareDefaultFactory)
+def default_end(context):
+    return datetime.datetime.now() + datetime.timedelta(10)
+
+
 # Interface class; used to define content-type schema.
 
-class ISession(model.Schema, IImageScaleTraversable):
+class ISession(form.Schema, IImageScaleTraversable):
     """
     Conference Session
     """
 
-    # If you want a schema-defined interface, delete the model.load
-    # line below and delete the matching file in the models sub-directory.
-    # If you want a model-based interface, edit
-    # models/session.xml to define the content type.
+    title = schema.TextLine(title=_(u'Session Name'))
 
-    model.load("models/session.xml")
+    description = schema.Text(
+        title=_(u'Session summary'),
+        description=_(u'Short description of session topics')
+        )
+
+    start = schema.Datetime(
+        title=_(u'Session starts'),
+        defaultFactory=default_start,
+        )
+
+    end = schema.Datetime(
+        title=_(u'Session ends'),
+        defaultFactory=default_end
+        )
+
+    accessible = schema.Choice(
+        title=_(u'Accessible?'),
+        values=(_(u'Yes'), _(u'No')),
+        default='Yes',
+        )
+    form.widget(accessible="z3c.form.browser.radio.RadioFieldWidget")
+
+    details = RichText(title=_(u'Details'))
 
 
 # Custom content-type class; objects created for this content type will

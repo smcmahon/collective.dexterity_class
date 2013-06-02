@@ -21,7 +21,7 @@ from collective.dexterity_class import MessageFactory as _
 
 # Interface class; used to define content-type schema.
 
-class IProgram(model.Schema, IImageScaleTraversable):
+class IProgram(form.Schema, IImageScaleTraversable):
     """
     Conference Program
     """
