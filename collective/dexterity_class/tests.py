@@ -52,6 +52,30 @@ def test_suite():
 
         # -*- extra stuff goes here -*-
 
+        # Integration tests for Presenter
+        ztc.ZopeDocFileSuite(
+            'Presenter.txt',
+            package='collective.dexterity_class',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
+        # Integration tests for Session
+        ztc.ZopeDocFileSuite(
+            'Session.txt',
+            package='collective.dexterity_class',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
+        # Integration tests for Program
+        ztc.ZopeDocFileSuite(
+            'Program.txt',
+            package='collective.dexterity_class',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
+
+
         ])
 
 if __name__ == '__main__':

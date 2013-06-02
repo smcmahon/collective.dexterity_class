@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf8'?>
+<model xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="title" type="zope.schema.TextLine">
+      <description/>
+      <title>Name</title>
+    </field>
+    <field name="description" type="zope.schema.Text">
+      <description>Presenter title or expertise</description>
+      <title>Brief description</title>
+    </field>
+    <field name="email" type="zope.schema.TextLine" form:validator="dexterity.validators.isEmail">
+      <description/>
+      <title>Email</title>
+    </field>
+    <field name="photo" type="plone.namedfile.field.NamedBlobImage">
+      <description>Photo of presenter</description>
+      <title>Photo</title>
+      <required>False</required>
+    </field>
+    <field name="bio" type="plone.app.textfield.RichText">
+      <description/>
+      <required>False</required>
+      <title>Biography</title>
+    </field>
+  </schema>
+</model>

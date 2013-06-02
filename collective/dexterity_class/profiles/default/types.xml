@@ -8,4 +8,7 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="collective.dexterity_class.presenter" meta_type="Dexterity FTI" />
+  <object name="collective.dexterity_class.session" meta_type="Dexterity FTI" />
+  <object name="collective.dexterity_class.program" meta_type="Dexterity FTI" />
 </object>

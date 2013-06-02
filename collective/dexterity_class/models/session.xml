@@ -1,0 +1,37 @@
+<model xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="start" type="zope.schema.Datetime">
+      <description/>
+      <title>Start date</title>
+    </field>
+    <field name="end" type="zope.schema.Datetime">
+      <description/>
+      <title>End time</title>
+    </field>
+    <field name="presenters" type="zope.schema.Set">
+      <description/>
+      <required>False</required>
+      <title>Presenters</title>
+      <value_type type="zope.schema.Choice">
+        <required>False</required>
+        <values>
+          <element>Fred</element>
+          <element>Tina</element>
+        </values>
+      </value_type>
+    </field>
+    <field name="tracks" type="zope.schema.Set">
+      <description/>
+      <required>False</required>
+      <title>Tracks for this session</title>
+      <value_type type="zope.schema.Choice">
+        <values/>
+      </value_type>
+    </field>
+    <field name="details" type="plone.app.textfield.RichText">
+      <description/>
+      <required>False</required>
+      <title>Details</title>
+    </field>
+  </schema>
+</model>

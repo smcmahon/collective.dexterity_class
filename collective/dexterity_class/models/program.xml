@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf8'?>
+<model xmlns:form="http://namespaces.plone.org/supermodel/form" xmlns:marshal="http://namespaces.plone.org/supermodel/marshal" xmlns:security="http://namespaces.plone.org/supermodel/security" xmlns="http://namespaces.plone.org/supermodel/schema">
+  <schema>
+    <field name="title" type="zope.schema.TextLine">
+      <description/>
+      <title>Conference Title</title>
+    </field>
+    <field name="description" type="zope.schema.Text">
+      <description>Conference short description</description>
+      <title>Description</title>
+    </field>
+    <field name="conference_starts" type="zope.schema.Date">
+      <description/>
+      <title>Conference Starts</title>
+    </field>
+    <field name="ends" type="zope.schema.Date">
+      <description/>
+      <title>Conference ends</title>
+    </field>
+    <field name="details" type="plone.app.textfield.RichText">
+      <description/>
+      <required>False</required>
+      <title>Details</title>
+    </field>
+    <field name="tracks" type="zope.schema.Text">
+      <description>Session tracks for this conference. One track title per line.</description>
+      <required>False</required>
+      <title>Conference Tracks</title>
+    </field>
+  </schema>
+</model>
