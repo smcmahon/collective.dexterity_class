@@ -22,7 +22,8 @@ class TestCase(ptc.PloneTestCase):
 
         @classmethod
         def setUp(cls):
-            zcml.load_config('configure.zcml', collective.dexterity_class)
+            zcml.load_config('configure.zcml',
+              collective.dexterity_class)
 
         @classmethod
         def tearDown(cls):
@@ -44,14 +45,12 @@ def test_suite():
 
         # Integration tests that use PloneTestCase
         ztc.ZopeDocFileSuite(
-           'IntegrationTests.txt',
-           package='collective.dexterity_class',
-           optionflags=OPTION_FLAGS,
-           test_class=TestCase),
+            'INTEGRATION.txt',
+            package='collective.dexterity_class',
+            optionflags = OPTION_FLAGS,
+            test_class=TestCase),
 
-        #ztc.FunctionalDocFileSuite(
-        #    'browser.txt', package='collective.dexterity_class',
-        #    test_class=TestCase),
+        # -*- extra stuff goes here -*-
 
         ])
 

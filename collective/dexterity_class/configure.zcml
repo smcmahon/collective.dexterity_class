@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:grok="http://namespaces.zope.org/grok"
@@ -10,18 +11,24 @@
   <!-- Include configuration for dependencies listed in setup.py -->
   <includeDependencies package="." />
 
-  <!-- Grok the package to initialise schema interfaces and content classes -->
+  <!-- Grok the package to initialize schema interfaces and content classes -->
   <grok:grok package="." />
-  
+
+  <!-- Register a resource directory from which we can deploy static
+   resource files. -->
+  <browser:resourceDirectory
+    name="collective.dexterity_class"
+    directory="resources" />
+
   <i18n:registerTranslations directory="locales" />
 
   <!-- Register an extension profile to make the product installable
        in Plone -->
   <genericsetup:registerProfile
       name="default"
-      title="Dexterity Class Examples"
+      title="A Conference Package"
       directory="profiles/default"
-      description="Extension profile for Dexterity Class Examples"
+      description="Extension profile for A Conference Package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 

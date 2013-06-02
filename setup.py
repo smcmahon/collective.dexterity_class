@@ -5,7 +5,7 @@ version = '1.0'
 
 setup(name='collective.dexterity_class',
       version=version,
-      description="Dexterity Class Examples",
+      description="A Conference Package",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
@@ -16,9 +16,9 @@ setup(name='collective.dexterity_class',
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Steve McMahon',
-      author_email='steve@dcn.org',
-      url='https://github.com/smcmahon/collective.dexterity_class',
+      author='',
+      author_email='',
+      url='http://svn.plone.org/svn/collective/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],
@@ -26,8 +26,8 @@ setup(name='collective.dexterity_class',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity',
-          'collective.dexteritytextindexer',
+          'plone.app.dexterity [grok]',
+          'plone.namedfile [blobs]',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
@@ -35,6 +35,9 @@ setup(name='collective.dexterity_class',
       [z3c.autoinclude.plugin]
       target = plone
       """,
+      # The next two lines may be deleted after you no longer need
+      # addcontent support from paster and before you distribute
+      # your package.
       setup_requires=["PasteScript"],
       paster_plugins = ["ZopeSkel"],
 
