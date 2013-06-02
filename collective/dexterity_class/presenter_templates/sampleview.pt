@@ -21,7 +21,11 @@
     </h2>
 
 
-    <div tal:content="context/Title">Title inserted here</div>
+    <h1 tal:content="context/Title">Title inserted here</h1>
+
+    <img src="#" tal:replace="structure context/@@images/photo/mini" />
+
+    <div tal:replace="structure context/bio/output | nothing" />
 
   </metal:content-core>
 </metal:main>

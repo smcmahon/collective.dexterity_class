@@ -23,6 +23,15 @@
 
     <div tal:content="context/Title">Title inserted here</div>
 
+    <div tal:content="structure view/w/details/render" />
+
+    <ul>
+        <li tal:repeat="brain context/getFolderContents">
+            <a href="#" tal:content="brain/Title"
+                tal:attributes="href brain/getURL" />
+        </li>
+    </ul>
+
   </metal:content-core>
 </metal:main>
 

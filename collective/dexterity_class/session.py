@@ -11,6 +11,7 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
 from plone.dexterity.content import Container
 from plone.directives import dexterity, form
+from plone.indexer import indexer
 from plone.namedfile.field import NamedImage, NamedFile
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
@@ -18,8 +19,19 @@ from plone.supermodel import model
 
 from plone.app.textfield import RichText
 
+from collective.dexteritytextindexer import searchable
 
 from collective.dexterity_class import MessageFactory as _
+
+from program import IProgram
+
+
+@provider(IContextSourceBinder)
+def trackVocabulary(context):
+    while context is not None and not IProgram.providedBy(context):
+        context = context.aq_parent
+
+    return context.trackVocabulary()
 
 
 @provider(IContextAwareDefaultFactory)
@@ -66,6 +78,12 @@ class ISession(form.Schema, IImageScaleTraversable):
         )
     form.widget(accessible="z3c.form.browser.radio.RadioFieldWidget")
 
+    tracks = schema.List(
+        title=_(u'Tracks for this session'),
+        value_type=schema.Choice(title=u'dummy', source=trackVocabulary),
+        )
+
+    searchable('details')
     details = RichText(title=_(u'Details'))
 
     @invariant
@@ -85,6 +103,11 @@ def validateDescription(value):
 def yuck(value):
     return u"Yuck"
 
+
+@indexer(ISession)
+def tracksIndexer(obj):
+    return obj.tracks
+grok.global_adapter(tracksIndexer, name="Subject")
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
@@ -107,7 +130,7 @@ class Session(Container):
 # of this type by uncommenting the grok.name line below or by
 # changing the view class name and template filename to View / view.pt.
 
-class SampleView(grok.View):
+class SampleView(dexterity.DisplayForm):
     """ sample view class """
 
     grok.context(ISession)

@@ -42,7 +42,10 @@ class IProgram(form.Schema, IImageScaleTraversable):
 class Program(Container):
     grok.implements(IProgram)
 
-    # Add your class methods and properties here
+    def trackVocabulary(self):
+        tracks = [s.strip() for s in self.tracks.split('\n')]
+        return SimpleVocabulary.fromValues(tracks)
+
 
 
 # View class
