@@ -31,6 +31,10 @@ def default_end(context):
     return datetime.datetime.now() + datetime.timedelta(10)
 
 
+class StartBeforeEnd(Invalid):
+    __doc__ = _(u"The start or end date is invalid")
+
+
 # Interface class; used to define content-type schema.
 
 class ISession(form.Schema, IImageScaleTraversable):
@@ -42,7 +46,7 @@ class ISession(form.Schema, IImageScaleTraversable):
 
     description = schema.Text(
         title=_(u'Session summary'),
-        description=_(u'Short description of session topics')
+        description=_(u'Short description of session topics'),
         )
 
     start = schema.Datetime(
@@ -63,6 +67,23 @@ class ISession(form.Schema, IImageScaleTraversable):
     form.widget(accessible="z3c.form.browser.radio.RadioFieldWidget")
 
     details = RichText(title=_(u'Details'))
+
+    @invariant
+    def checkDates(data):
+        if data.start is not None and data.end is not None:
+            if data.start > data.end:
+                raise StartBeforeEnd(_(u"The start date must be before the end date."))
+
+
+@form.validator(field=ISession['description'])
+def validateDescription(value):
+    if 'php' in value.lower():
+        raise schema.ValidationError(
+          u"PHP is not for mature audiences.")
+
+@form.error_message(error=schema.ValidationError, field=ISession['description'])
+def yuck(value):
+    return u"Yuck"
 
 
 # Custom content-type class; objects created for this content type will
