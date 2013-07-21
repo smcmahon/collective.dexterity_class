@@ -26,7 +26,7 @@ setup(name='collective.dexterity_class',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'plone.app.dexterity [grok]',
+          'plone.app.dexterity [grok, relations]',
           'plone.namedfile [blobs]',
           'collective.dexteritytextindexer',
           # -*- Extra requirements: -*-

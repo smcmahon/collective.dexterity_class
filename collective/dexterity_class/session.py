@@ -17,6 +17,9 @@ from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 from plone.namedfile.interfaces import IImageScaleTraversable
 from plone.supermodel import model
 
+from z3c.relationfield.schema import RelationList, RelationChoice
+from plone.formwidget.contenttree import ObjPathSourceBinder
+
 from plone.app.textfield import RichText
 
 from collective.dexteritytextindexer import searchable
@@ -85,6 +88,18 @@ class ISession(form.Schema, IImageScaleTraversable):
 
     searchable('details')
     details = RichText(title=_(u'Details'))
+
+    presenters = RelationList(
+        title=u"Presenters",
+        default=[],
+        value_type=RelationChoice(
+            title=_(u"Presenter"),
+            source=ObjPathSourceBinder(
+                object_provides='collective.dexterity_class.presenter.IPresenter'
+                )
+            ),
+        required=False,
+)
 
     @invariant
     def checkDates(data):

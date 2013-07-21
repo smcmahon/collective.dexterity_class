@@ -1,5 +1,6 @@
 from five import grok
 
+import z3c.form
 from z3c.form import group, field
 from zope import schema
 from zope.interface import invariant, Invalid
@@ -17,6 +18,13 @@ from plone.app.textfield import RichText
 
 
 from collective.dexterity_class import MessageFactory as _
+
+
+class IsEmail(z3c.form.validator.SimpleFieldValidator):
+
+    def validate(self, value):
+        if value and not '@' in value:
+            raise Invalid(_(u"Missing @!"))
 
 
 # Interface class; used to define content-type schema.

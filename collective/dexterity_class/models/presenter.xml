@@ -9,7 +9,7 @@
       <description>Presenter title or expertise</description>
       <title>Brief description</title>
     </field>
-    <field name="email" type="zope.schema.TextLine" form:validator="dexterity.validators.isEmail">
+    <field name="email" type="zope.schema.TextLine" form:validator="collective.dexterity_class.presenter.IsEmail">
       <description/>
       <title>Email</title>
     </field>
